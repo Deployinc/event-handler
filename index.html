@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deploy simple event handler</title>
+    <script src="test.js"></script>
+    <script src="event.js"></script>
+</head>
+<body>
+    <h1>Objects</h1>
+    <p>You are calling the handlers that are methods of objects, and thus passing the objects as "scope" to the "subscribe" function.</p>
+    <div>
+        <h2>Simple event subscription and and firing</h2>
+        <p>No parameters, just subscribe and fire.</p>
+        <button onclick="javascript:Deploy.Event.subscribe('showEvent', 'show', Deploy.Test);">Subscribe show event</button>
+        <button onclick="javascript:Deploy.Event.fire('showEvent');">Fire show event</button>
+    </div>
+
+    <div>
+        <h2>Event subscription and firing with parameters.</h2>
+        <p>Adding a parameter to the <i>fire</i> method, allowing greater functionality in the event calling.</p>
+        <button onclick="javascript:Deploy.Event.subscribe('showParametrizedEvent', 'show', Deploy.Test);">Subscribe parametrized show event</button>
+        <button onclick="javascript:Deploy.Event.fire('showParametrizedEvent', 'Look, I\'m a custom message, passed in as a parameter.');">Fire parametrized show event</button>
+    </div>
+
+    <h1>Functions</h1>
+    <p>You are calling the handlers that are inline functions, and thus passing window as "scope" to the "subscribe" function.</p>
+    <div>
+        <h2>Simple event subscription and and firing</h2>
+        <p>No parameters, just subscribe and fire.</p>
+        <button onclick="javascript:Deploy.Event.subscribe('showInlineEvent', 'showInline', window);">Subscribe inline show event</button>
+        <button onclick="javascript:Deploy.Event.fire('showInlineEvent');">Fire inline show event</button>
+    </div>
+    <div>
+        <h2>Event subscription and firing with parameters.</h2>
+        <p>Adding a parameter to the <i>fire</i> method, allowing greater functionality in the event calling.</p>
+        <button onclick="javascript:Deploy.Event.subscribe('showInlineEvent', 'showInline', window);">Subscribe parametrized inline show event</button>
+        <button onclick="javascript:Deploy.Event.fire('showInlineEvent', 'Look, I\'m a custom message in an inline function passed in as a parameter.');">Fire parametrized inline show event</button>
+    </div>
+
+    <script type="text/javascript">
+
+        function showInline(text) {
+           var message = text ? text : 'Default message from an inline function.';
+           window.alert(message);
+        }
+
+    </script>
+</body>
+</html>
