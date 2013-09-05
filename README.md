@@ -6,10 +6,9 @@ What does it do?
 
 This is a native JS event handler that implements a basic "pubsub" patern. (http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern)
 
-In a nutshell, you subscribe a cetain method of a certain object (or an inline javascript function) to be executed on request, and identify it with an event name.
+In a nutshell, you subscribe a cetain method of a certain object (or an inline javascript function) to be executed on request, and identify it with an event name. Then you fire it when needed using the name you specified.
 
-
-How to I try it out?
+How do I try it out?
 -------------
 
 Well, there is an index.html file in the repo with basic use case examples that should give you a general idea of how the event handler class works. 
