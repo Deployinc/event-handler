@@ -54,7 +54,7 @@ Deploy.Event.subscribe('cleverEventNameHere', 'showMe', window);
 Can I chain events?
 -------------
 
-Of course, just use the same event name when subscribing and a different handler. There is a failsafe preventing duplicate subscription, so have to chain different events.
+Of course, just use the same event name when subscribing and a different handler. There is a failsafe preventing duplicate subscription, so you have to chain different event handlers.
 
 Example:
 
