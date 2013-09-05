@@ -50,6 +50,21 @@ function showMe() {
 Deploy.Event.subscribe('cleverEventNameHere', 'showMe', window);
 ```
 
-Hope this makes it a bit clearer.
 
+Can I chain events?
+-------------
 
+Of course, just use the same event name when subscribing and a different handler. There is a failsafe preventing duplicate subscription, so have to chain different events.
+
+Example:
+
+```javascript
+Deploy.Event.subscribe('showPlayer', 'showName', Player);
+Deploy.Event.subscribe('showPlayer', 'showStats', Player);
+```
+
+Chain is triggered by:
+
+```javascript
+Deploy.Event.fire('showPlayer');
+```
