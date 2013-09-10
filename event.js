@@ -36,7 +36,7 @@ var Deploy = Deploy || {};
      */
     fire: function(name, eventArguments)
     {
-      if (this.subscriptions[name] !== null &&
+      if (typeof this.subscriptions[name] !== 'undefined' &&
           this.subscriptions[name] instanceof Array) {
 
         for (var i = 0; i < this.subscriptions[name].length; i++) {
@@ -72,6 +72,49 @@ var Deploy = Deploy || {};
 
         this.subscriptions[name].push({'handler': handler, 'scope': scope});
       }
+    },
+
+    /**
+     * The unsubscribe method, adding the subscribed event, its handler and
+     * the scope to the Event watcher object.
+     *
+     * @param {string} name
+     * @param {?string} handler
+     * @param {?Object} scope
+     */
+    unsubscribe: function(name, handler, scope)
+    {
+      if (typeof name === 'undefined') {
+        throw 'Invalid parameter exception: No event name specified.';
+      }
+
+      // Considered throwing an exception here as well, but might be too
+      // restrictive - so instead method will just exit.
+      if (typeof this.subscriptions[name] === 'undefined' ||
+          !(this.subscriptions[name] instanceof Array)) {
+
+        return;
+      }
+
+      if (typeof handler === 'undefined') {
+
+        delete this.subscriptions[name];
+
+      } else {
+
+        for (var i = 0; i < this.subscriptions[name].length; i++) {
+
+          var subscription = this.subscriptions[name][i];
+
+          if (subscription.handler === handler &&
+              (typeof scope === 'undefined' || subscription.scope === scope)) {
+
+            this.subscriptions[name].splice(i, 1);
+          }
+        }
+      }
+
+
     },
 
     /**
